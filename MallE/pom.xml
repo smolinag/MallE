@@ -9,6 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <jvm.options>-Xmx256M</jvm.options>
     </properties>
     
     <dependencies>
@@ -30,6 +31,8 @@
         </dependency>
     </dependencies>
     
+    
+    
     <build>
         <plugins>
             <plugin>
@@ -37,11 +40,14 @@
                 <artifactId>ssh-exec-maven-plugin</artifactId>
                 <version>1.2</version>
                 <configuration>
-                    <sshHost>192.168.0.245</sshHost>
+                    <sshHost>192.168.20.190</sshHost>
                     <sshUsername>pi</sshUsername>
-                    <sshPassword>noatecrd2018.</sshPassword>
+                    <sshPassword>malle2020</sshPassword>
                     <sudo>true</sudo>
                     <configuration>
+                        <compilerArgs>
+                            <arg>${jvm.options}</arg>
+                        </compilerArgs>
                         <mainClass>com.mycompany.mavenproject1.HolaMundo</mainClass>
                     </configuration>
                     <executions>

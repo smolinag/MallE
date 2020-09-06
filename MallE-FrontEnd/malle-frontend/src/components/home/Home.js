@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import './Home.css';
 
+//Actions
+import {move} from '../../actions/Controls.actions'
+
 //Functions
 import { handleKeyPress, handleKeyRelease } from './MovementControls';
 
@@ -16,10 +19,15 @@ class Home extends Component {
         }
     }
 
+    async move(direction){
+        let response = await move(direction, 'MEDIUM');
+    }
+
     handleKeyPress = (e) => {
         var newControlStatus = handleKeyPress(this.state.moveStatus, this.state.headServoStatus, e.key)
         if (newControlStatus && newControlStatus.newMoveStatus) {
             console.log("MoveStatus:" + newControlStatus.newMoveStatus)
+            this.move(newControlStatus.newMoveStatus)
             this.setState({
                 moveStatus: newControlStatus.newMoveStatus
             })
@@ -36,6 +44,7 @@ class Home extends Component {
         var newControlStatus = handleKeyRelease(this.state.moveStatus, this.state.headServoStatus, e.key)
         if (newControlStatus && newControlStatus.newMoveStatus) {
             console.log("MoveStatus:" + newControlStatus.newMoveStatus)
+            this.move(newControlStatus.newMoveStatus)
             this.setState({
                 moveStatus: newControlStatus.newMoveStatus
             })

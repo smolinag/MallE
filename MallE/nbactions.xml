@@ -10,7 +10,7 @@
                 <goal>org.rogueware.mojo:ssh-exec-maven-plugin:1.2:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+                <exec.args>-classpath %classpath com.malle.MalleMain</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>

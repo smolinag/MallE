@@ -15,10 +15,10 @@ import java.util.Map;
  */
 public enum Speed {
     STOP(0, "STOP"),
-    SLOW(30, "SLOW"),
-    MEDIUM(50, "MEDIUM"),
-    FAST(70, "FAST"),
-    MAX(85, "MAX");
+    SLOW(65, "SLOW"),
+    MEDIUM(78, "MEDIUM"),
+    FAST(90, "FAST"),
+    MAX(100, "MAX");
     
     private int pwmVal;
     private String speedName;

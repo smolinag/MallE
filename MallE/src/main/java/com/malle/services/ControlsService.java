@@ -67,35 +67,25 @@ public class ControlsService {
 
         //Get speed (PWM width)
         Speed speed = Speed.getSpeedLevelByName(speedName);
+        
+        System.out.println("Direction: " + direction + " Speed: " + speedName);
 
         Integer ans = 1;
         switch (direction) {
             case "F": //forward
-                DriversMain.getHBridgeDriver().move(speed, speed, true, true);
+                DriversMain.getHBridgeDriver().move(1,1);
                 break;
             case "B": //backward
-                DriversMain.getHBridgeDriver().move(speed, speed, false, false);
+                DriversMain.getHBridgeDriver().move(-1,-1);
                 break;
             case "L": //left
-                DriversMain.getHBridgeDriver().move(speed, Speed.STOP, true, false);
+                DriversMain.getHBridgeDriver().move(1,0);
                 break;
             case "R": //right
-                DriversMain.getHBridgeDriver().move(Speed.STOP, speed, false, true);
-                break;
-            case "FL": //forward-left
-                DriversMain.getHBridgeDriver().move(speed, Speed.SLOW, true, true);
-                break;
-            case "FR": //forward-right
-                DriversMain.getHBridgeDriver().move(Speed.SLOW, speed, true, true);
-                break;
-            case "BL": //backward-left
-                DriversMain.getHBridgeDriver().move(speed, Speed.SLOW, false, false);
-                break;
-            case "BR": //backward-right
-                DriversMain.getHBridgeDriver().move(Speed.SLOW, speed, false, false);
-                break;
+                DriversMain.getHBridgeDriver().move(0,1);
+                break;           
             case "S": //stop
-                DriversMain.getHBridgeDriver().stopThrotle();
+                DriversMain.getHBridgeDriver().move(0,0);
                 break;
             default:
                 ans = 0;

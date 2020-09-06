@@ -8,12 +8,6 @@ export function handleKeyPress(moveStatus, headServoStatus, keyPressed) {
                 case "S":
                     newMoveStatus = "F";
                     break;
-                case "R":
-                    newMoveStatus = "FR";
-                    break;
-                case "L":
-                    newMoveStatus = "FL";
-                    break;
             }
             return { newMoveStatus: newMoveStatus, newhHeadServoStatus: "" };
         case "ArrowDown":
@@ -21,12 +15,6 @@ export function handleKeyPress(moveStatus, headServoStatus, keyPressed) {
             switch (moveStatus) {
                 case "S":
                     newMoveStatus = "B";
-                    break;
-                case "R":
-                    newMoveStatus = "BR";
-                    break;
-                case "L":
-                    newMoveStatus = "BL";
                     break;
             }
             return { newMoveStatus: newMoveStatus, newhHeadServoStatus: "" };
@@ -36,12 +24,6 @@ export function handleKeyPress(moveStatus, headServoStatus, keyPressed) {
                 case "S":
                     newMoveStatus = "L";
                     break;
-                case "F":
-                    newMoveStatus = "FL";
-                    break;
-                case "B":
-                    newMoveStatus = "BL";
-                    break;
             }
             return { newMoveStatus: newMoveStatus, newhHeadServoStatus: "" };
         case "ArrowRight":
@@ -49,12 +31,6 @@ export function handleKeyPress(moveStatus, headServoStatus, keyPressed) {
             switch (moveStatus) {
                 case "S":
                     newMoveStatus = "R";
-                    break;
-                case "F":
-                    newMoveStatus = "FR";
-                    break;
-                case "B":
-                    newMoveStatus = "BR";
                     break;
             }
             return { newMoveStatus: newMoveStatus, newhHeadServoStatus: "" };
