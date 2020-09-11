@@ -6,7 +6,6 @@
 package com.malle.services;
 
 import com.malle.drivers.DriversMain;
-import com.malle.drivers.hbridge.Speed;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,43 +18,44 @@ import org.springframework.stereotype.Service;
 public class ControlsService {
 
     public ResponseEntity<Integer> moveHeadServo(String direction) {
+        System.out.println("MoveHeadServo " + direction);
         Integer ans = 1;
         switch (direction) {
             case "U":
-                DriversMain.getServoUpDown().startAngleIncreasing(2);
-                DriversMain.getServoRightLeft().stopAngleIncreasing();
+                DriversMain.getVerticalServo().startAngleIncreasing(2);
+                DriversMain.getHorizontalServo().stopAngleIncreasing();
                 break;
             case "D":
-                DriversMain.getServoUpDown().startAngleIncreasing(-2);
-                DriversMain.getServoRightLeft().stopAngleIncreasing();
+                DriversMain.getVerticalServo().startAngleIncreasing(-2);
+                DriversMain.getHorizontalServo().stopAngleIncreasing();
                 break;
             case "L":
-                DriversMain.getServoRightLeft().startAngleIncreasing(2);
-                DriversMain.getServoUpDown().stopAngleIncreasing();
+                DriversMain.getHorizontalServo().startAngleIncreasing(2);
+                DriversMain.getVerticalServo().stopAngleIncreasing();
                 break;
             case "R":
-                DriversMain.getServoRightLeft().startAngleIncreasing(-2);
-                DriversMain.getServoUpDown().stopAngleIncreasing();
+                DriversMain.getHorizontalServo().startAngleIncreasing(-2);
+                DriversMain.getVerticalServo().stopAngleIncreasing();
                 break;
             case "UR":
-                DriversMain.getServoUpDown().startAngleIncreasing(2);
-                DriversMain.getServoRightLeft().startAngleIncreasing(-2);
+                DriversMain.getVerticalServo().startAngleIncreasing(2);
+                DriversMain.getHorizontalServo().startAngleIncreasing(-2);
                 break;
             case "UL":
-                DriversMain.getServoUpDown().startAngleIncreasing(2);
-                DriversMain.getServoRightLeft().startAngleIncreasing(2);
+                DriversMain.getVerticalServo().startAngleIncreasing(2);
+                DriversMain.getHorizontalServo().startAngleIncreasing(2);
                 break;
             case "DR":
-                DriversMain.getServoUpDown().startAngleIncreasing(-2);
-                DriversMain.getServoRightLeft().startAngleIncreasing(-2);
+                DriversMain.getVerticalServo().startAngleIncreasing(-2);
+                DriversMain.getHorizontalServo().startAngleIncreasing(-2);
                 break;
             case "DL":
-                DriversMain.getServoUpDown().startAngleIncreasing(-2);
-                DriversMain.getServoRightLeft().startAngleIncreasing(2);
+                DriversMain.getVerticalServo().startAngleIncreasing(-2);
+                DriversMain.getHorizontalServo().startAngleIncreasing(2);
                 break;
             case "S":
-                DriversMain.getServoUpDown().stopAngleIncreasing();
-                DriversMain.getServoRightLeft().stopAngleIncreasing();
+                DriversMain.getVerticalServo().stopAngleIncreasing();
+                DriversMain.getHorizontalServo().stopAngleIncreasing();
             default:
                 ans = 0;
                 break;
@@ -63,12 +63,9 @@ public class ControlsService {
         return ResponseEntity.status(HttpStatus.OK).body(ans);
     }
 
-    public ResponseEntity<Integer> move(String direction, String speedName) {
-
-        //Get speed (PWM width)
-        Speed speed = Speed.getSpeedLevelByName(speedName);
+    public ResponseEntity<Integer> move(String direction) {
         
-        System.out.println("Direction: " + direction + " Speed: " + speedName);
+        System.out.println("Direction: " + direction);
 
         Integer ans = 1;
         switch (direction) {

@@ -15,6 +15,8 @@ import java.util.logging.Logger;
  * @author Santiago Noatec
  */
 public class ServoMotorDriver {
+    
+    private String servoName;
 
     private final int MIN_ANGLE_LIMIT = -90;
     private final int MAX_ANGLE_LIMIT = 90;
@@ -32,8 +34,9 @@ public class ServoMotorDriver {
     private boolean angleIncreasingShouldStop = false;    
     private Integer angleIncreaseTimeInterval = 50; //ms
 
-    public ServoMotorDriver(Pin pwmPin, Integer minAngle, Integer maxAngle, Integer startAngle) {
+    public ServoMotorDriver(String servoName, Pin pwmPin, Integer minAngle, Integer maxAngle, Integer startAngle) {
         this.pwmPin = pwmPin;
+        this.servoName = servoName;
 
         //Configure PWM
         GpioController gpio = GpioFactory.getInstance();
@@ -51,6 +54,7 @@ public class ServoMotorDriver {
     }
 
     public void startAngleIncreasing(int angleStep) {
+        System.out.println(servoName + " isAngleIncreasing " + isAngleIncreasing + " angleIncreasingShouldStop "+ angleIncreasingShouldStop);
         if (!isAngleIncreasing) {
             Thread servoIncreasingThread = new Thread() {
                 @Override
@@ -65,6 +69,7 @@ public class ServoMotorDriver {
                     }
                 }
             };
+            angleIncreasingShouldStop = false;
             servoIncreasingThread.start();
             isAngleIncreasing = true;
         }

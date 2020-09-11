@@ -32,6 +32,9 @@ public class HBridgeDriver {
         //Configure MotorB 
         this.motorBPin1 = gpio.provisionDigitalOutputPin(motorBPin1);
         this.motorBPin2 = gpio.provisionDigitalOutputPin(motorBPin2);
+        
+        //Stop motors
+        move(0, 0);
     }
 
     public void move(Integer aStatus, Integer bStatus) {

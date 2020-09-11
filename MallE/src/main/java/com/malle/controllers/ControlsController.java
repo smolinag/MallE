@@ -31,8 +31,8 @@ public class ControlsController {
         return controlsService.moveHeadServo(direction);
     }
     
-    @RequestMapping(value= "/move", params = {"direction", "speed"}, method = RequestMethod.GET)
-    public ResponseEntity<Integer> move(@RequestParam("direction") String direction, @RequestParam("speed") String speed) {
-        return controlsService.move(direction, speed);
+    @RequestMapping(value= "/move", params = {"direction"}, method = RequestMethod.GET)
+    public ResponseEntity<Integer> move(@RequestParam("direction") String direction) {
+        return controlsService.move(direction);
     }
 }

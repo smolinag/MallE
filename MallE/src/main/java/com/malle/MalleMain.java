@@ -22,5 +22,9 @@ public class MalleMain {
         DriversMain.initializeDrivers();
         
         SpringApplication.run(MalleMain.class, args);
+        
+        DriversMain.getFrontUltrasound().start();
+        DriversMain.getLowerUltrasound().start();
+        DriversMain.getHeadUltrasound().start();
     }
 }
